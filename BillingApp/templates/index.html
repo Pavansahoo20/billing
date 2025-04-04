@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>PSP Restaurant - Order Now</h2>
+    <form method="POST">
+        <label for="name">Customer Name:</label>
+        <input type="text" name="name" required>
+
+        <label for="order_type">Take Away / Dine-In:</label>
+        <select name="order_type">
+            <option value="Take Away">Take Away</option>
+            <option value="Dine-In">Dine-In</option>
+        </select>
+
+        <h3>Select Items</h3>
+        {% for code, price in menu.items() %}
+            <input type="checkbox" name="items" value="{{ code }}"> {{ code }} - ₹{{ price }}
+            <input type="number" name="quantities" min="1" value="1">
+            <br>
+        {% endfor %}
+
+        <button type="submit">Generate Bill</button>
+    </form>
+</body>
+</html>

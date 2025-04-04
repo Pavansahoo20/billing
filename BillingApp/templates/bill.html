@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>PSP Restaurant - Bill Summary</h2>
+    <p>Customer: {{ name }}</p>
+    <p>Order Type: {{ order_type }}</p>
+    
+    <table border="1">
+        <tr>
+            <th>Item Code</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        {% for item in bill_items %}
+        <tr>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>₹{{ item[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><strong>Total Price:</strong> ₹{{ total_price }}</p>
+    <p><strong>GST (18%):</strong> ₹{{ gst }}</p>
+    <p><strong>Final Amount:</strong> ₹{{ final_amount }}</p>
+
+    <h3>Thank you for visiting PSP Restaurant!</h3>
+</body>
+</html>
